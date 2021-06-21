@@ -30,7 +30,8 @@ const Menu = styled.nav`
     list-style: none;
     padding: 0;
     display: flex;
-    align-items flex-start;
+    flex-flow: column nowrap;
+    align-items: flex-end;
   }
 `;
 
