@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { ClosedOption, Option } from "./Option";
+
 import logoE from "../assets/elmLogoE.png";
 import logoElm from "../assets/elmLogo.png";
-import { AiFillHome } from "react-icons/ai";
 
 const optionsArray = [
   { name: "Overview", pages: ["Overview", "Rate of Sale", "Discounts"] },
@@ -17,60 +18,66 @@ const Menu = styled.nav`
   min-height: 100vh;
   height: 100%;
   min-width: 5rem;
-  width: ${(props) => (props.open ? "40%" : "10%")};
+  width: ${(props) => (props.open ? "15rem" : "6rem")};
   background-color: var(--gray-dark);
   color: white;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  transition: width, left, right, 0.3s;
+  transition: width, left, right, 0.5s;
   ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    align-items flex-start;
   }
 `;
 
 const Logo = styled.img`
-  margin: 1rem;
-  max-height: 1.8rem;
-  max-width: 1.8rem;
-`;
+  margin: 3rem 1rem;
+  width: ${(props) => (props.open ? "4rem" : "1.8rem")};
 
-const SmallOption = styled.li`
-  background-color: var(--gray);
-  height: 1.5rem;
-  width: 1.5rem;
-  margin: 1rem;
-  border-radius: 50%;
-  text-align: center;
-  padding: 0.5rem;
-`;
-
-const HomeOption = styled(AiFillHome)`
-  height: 2rem;
-  width: 2rem;
-  color: var(--gray);
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const renderOptions = (arrayOfRetailers) => {
-    return arrayOfRetailers.map((el) => {
-      if (el.name.toLowerCase() === "overview") {
-        return <HomeOption />;
-      }
-      return <SmallOption>{el.name.substring(0, 2)}</SmallOption>;
-    });
+
+  const renderOptions = (arrayOfRetailers, open) => {
+    if (!open) {
+      return arrayOfRetailers.map((el, ind) => {
+        if (el.name.toLowerCase() === "overview") {
+          return <ClosedOption home key={el.name + ind} />;
+        }
+        return (
+          <ClosedOption
+            key={el.name + ind}
+            name={el.name.substring(0, 2)}
+            pages={el.pages.length > 1}
+          ></ClosedOption>
+        );
+      });
+    } else {
+      return <Option />;
+    }
   };
 
   return (
-    <Menu open={open}>
+    <Menu
+      open={open}
+      onClick={() => {
+        if (!open) setOpen(!open);
+      }}
+    >
       <Logo
-        src={open === false ? logoE : logoElm}
+        src={open ? logoElm : logoE}
         onClick={() => setOpen(!open)}
+        open={open}
       />
-      <ul>{renderOptions(optionsArray)}</ul>
+      <ul>{renderOptions(optionsArray, open)}</ul>
     </Menu>
   );
 };
