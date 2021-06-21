@@ -13,6 +13,9 @@ const SmallOption = styled.li`
   border-radius: 50%;
   text-align: center;
   padding: 0.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const HomeOption = styled(AiFillHome)`
@@ -20,12 +23,18 @@ const HomeOption = styled(AiFillHome)`
   width: 2rem;
   margin: 1rem 0.5rem;
   color: var(--gray);
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const TriangleWrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ClosedOption = (props) => {
