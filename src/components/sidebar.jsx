@@ -15,16 +15,16 @@ const optionsArray = [
 
 const Menu = styled.nav`
   min-height: 100vh;
-  height: 100vh;
+  height: 100%;
   min-width: 5rem;
-  width: 10%;
+  width: ${(props) => (props.open ? "40%" : "10%")};
   background-color: var(--gray-dark);
   color: white;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-
+  transition: width, left, right, 0.3s;
   ul {
     list-style: none;
     padding: 0;
@@ -54,6 +54,7 @@ const HomeOption = styled(AiFillHome)`
 `;
 
 const Sidebar = () => {
+  const [open, setOpen] = useState(false);
   const renderOptions = (arrayOfRetailers) => {
     return arrayOfRetailers.map((el) => {
       if (el.name.toLowerCase() === "overview") {
@@ -64,8 +65,11 @@ const Sidebar = () => {
   };
 
   return (
-    <Menu>
-      <Logo src={logoE} />
+    <Menu open={open}>
+      <Logo
+        src={open === false ? logoE : logoElm}
+        onClick={() => setOpen(!open)}
+      />
       <ul>{renderOptions(optionsArray)}</ul>
     </Menu>
   );
