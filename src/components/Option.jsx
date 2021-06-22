@@ -13,6 +13,9 @@ const SmallOption = styled.li`
   border-radius: 50%;
   text-align: center;
   padding: 0.5rem;
+  justify-self: start;
+  grid-area: icon;
+
   &:hover {
     cursor: pointer;
   }
@@ -20,7 +23,8 @@ const SmallOption = styled.li`
 
 const HomeOption = styled(AiFillHome)`
   color: var(--gray);
-  &:hover {
+  grid-area: icon;
+  justify-self &:hover {
     cursor: pointer;
   }
 `;
@@ -36,9 +40,13 @@ const Tag = styled(FaTag)`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
+  width: 90%;
+  margin: 0 0.2rem;
+  display: grid;
+  grid-template-columns: 1rem auto;
+  grid-template-areas: "arrow icon";
   align-items: center;
+
   &:hover {
     cursor: pointer;
   }
@@ -68,7 +76,11 @@ export const ClosedOption = (props) => {
       </Wrapper>
     );
   }
-  return <SmallOption>{name}</SmallOption>;
+  return (
+    <Wrapper>
+      <SmallOption>{name}</SmallOption>
+    </Wrapper>
+  );
 };
 
 export const Option = (props) => {
