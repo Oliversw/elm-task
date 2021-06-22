@@ -7,6 +7,8 @@
 3. Run `npm run dev`
 4. The code will then be available at `http://localhost:3000/`
 
+Note: The project [can also be viewed on Netlify](https://dazzling-raman-ca19f2.netlify.app/)
+
 ## Screenshots
 <img width="96" alt="Screenshot 2021-06-22 at 15 21 22" src="https://user-images.githubusercontent.com/9094166/122950399-532c2080-d374-11eb-85d0-c36096042898.png">
 <img width="238" alt="Screenshot 2021-06-22 at 15 21 34" src="https://user-images.githubusercontent.com/9094166/122950477-63dc9680-d374-11eb-8051-6b50251acd20.png">
