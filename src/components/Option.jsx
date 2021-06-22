@@ -23,6 +23,7 @@ const SmallOption = styled.li`
 
 const HomeOption = styled(AiFillHome)`
   color: var(--gray);
+  font-size: 1.5rem;
   grid-area: icon;
   justify-self &:hover {
     cursor: pointer;
@@ -37,6 +38,12 @@ const HomeOptionClosed = styled(HomeOption)`
 
 const Tag = styled(FaTag)`
   color: var(--gray);
+  grid-area: icon;
+  font-size: 1.5rem;
+`;
+
+const ArrRight = styled(VscTriangleRight)`
+  margin-right: 0.5rem;
 `;
 
 const Wrapper = styled.div`
@@ -54,10 +61,16 @@ const Wrapper = styled.div`
 
 const OptionWrapper = styled(Wrapper)`
   margin: 0.5rem 0.2rem;
+  display: grid;
+  grid-template-columns: 2rem 2.5rem auto;
+  grid-template-areas: "arrow icon text";
+  align-items: center;
 `;
 
 const OptionText = styled.a`
   margin-left: 0.5rem;
+  justify-self: start;
+  grid-area: text;
 `;
 
 export const ClosedOption = (props) => {
@@ -108,7 +121,8 @@ export const OptionDropdown = (props) => {
 
   return (
     <OptionWrapper>
-      {open ? <VscTriangleDown /> : <VscTriangleRight />}
+      {open ? <VscTriangleDown /> : <ArrRight />}
+      {home ? <HomeOption /> : <Tag />}
       <OptionText onClick={() => setOpen(!open)}>{name}</OptionText>
       {open && <ul>{renderDropdown()}</ul>}
     </OptionWrapper>
