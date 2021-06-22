@@ -8,6 +8,11 @@
 4. The code will then be available at `http://localhost:3000/`
 
 ## Screenshots
+<img width="96" alt="Screenshot 2021-06-22 at 15 21 22" src="https://user-images.githubusercontent.com/9094166/122950399-532c2080-d374-11eb-85d0-c36096042898.png">
+<img width="238" alt="Screenshot 2021-06-22 at 15 21 34" src="https://user-images.githubusercontent.com/9094166/122950477-63dc9680-d374-11eb-8051-6b50251acd20.png">
+<img width="238" alt="Screenshot 2021-06-22 at 15 22 13" src="https://user-images.githubusercontent.com/9094166/122950535-6f2fc200-d374-11eb-858b-e8fca777014d.png">
+
+
 
 ## Packages used
 
