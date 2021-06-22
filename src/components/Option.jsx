@@ -98,7 +98,7 @@ const DropDown = styled.ul`
   animation-duration: 0.5s;
 
   li {
-    margin: 0.2rem 0;
+    margin: 0.4rem 0;
   }
 `;
 
