@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./options.styles";
+// Ideally I would refactor some of these components to be more DRY
+// This would work best when refactoring with proper links to pages
 
 export const ClosedOption = (props) => {
   const { name, home, pages } = props;
@@ -37,6 +39,7 @@ export const Option = (props) => {
   );
 };
 
+//
 export const OptionDropdown = (props) => {
   const { home, name, pages } = props;
   const [open, setOpen] = useState(false);

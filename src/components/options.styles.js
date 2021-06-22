@@ -4,22 +4,6 @@ import { AiFillHome } from "react-icons/ai";
 import { FaTag } from "react-icons/fa";
 import { VscTriangleRight, VscTriangleDown } from "react-icons/vsc";
 
-export const SmallOption = styled.li`
-  background-color: var(--gray);
-  height: 1.5rem;
-  width: 1.5rem;
-  margin: 0.5rem 0.2rem;
-  border-radius: 50%;
-  text-align: center;
-  padding: 0.5rem;
-  justify-self: start;
-  grid-area: icon;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 export const HomeOption = styled(AiFillHome)`
   color: var(--teal);
   font-size: 1.5rem;
@@ -55,6 +39,22 @@ export const Wrapper = styled.div`
   grid-template-areas: "arrow icon";
   align-items: center;
   grid-template-rows: 3.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const SmallOption = styled.li`
+  background-color: var(--gray);
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.5rem 0.2rem;
+  border-radius: 50%;
+  text-align: center;
+  padding: 0.5rem;
+  justify-self: start;
+  grid-area: icon;
 
   &:hover {
     cursor: pointer;
