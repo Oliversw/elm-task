@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { AiFillHome } from "react-icons/ai";
@@ -19,16 +19,23 @@ const SmallOption = styled.li`
 `;
 
 const HomeOption = styled(AiFillHome)`
-  height: 2rem;
-  width: 2rem;
-  margin: 1rem 0.5rem;
   color: var(--gray);
   &:hover {
     cursor: pointer;
   }
 `;
 
-const TriangleWrapper = styled.div`
+const HomeOptionClosed = styled(HomeOption)`
+  height: 2rem;
+  width: 2rem;
+  margin: 1rem 0.5rem;
+`;
+
+const Tag = styled(FaTag)`
+  color: var(--gray);
+`;
+
+const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -37,22 +44,61 @@ const TriangleWrapper = styled.div`
   }
 `;
 
+const OptionWrapper = styled(Wrapper)`
+  margin: 0.5rem 0.2rem;
+`;
+
+const OptionText = styled.a`
+  margin-left: 0.5rem;
+`;
+
 export const ClosedOption = (props) => {
   const { name, home, pages } = props;
   if (home) {
-    return <HomeOption />;
+    return (
+      <Wrapper>
+        <HomeOptionClosed />
+      </Wrapper>
+    );
   }
   if (pages) {
     return (
-      <TriangleWrapper>
+      <Wrapper>
         <VscTriangleRight /> <SmallOption>{name}</SmallOption>
-      </TriangleWrapper>
+      </Wrapper>
     );
   }
   return <SmallOption>{name}</SmallOption>;
 };
 
 export const Option = (props) => {
-  const { home, name } = props;
-  return <SmallOption>{name}</SmallOption>;
+  const { home, name, pages } = props;
+  if (pages) {
+    return <OptionDropdown home={home} name={name} pages={pages} />;
+  }
+  return (
+    <OptionWrapper>
+      {home ? <HomeOption /> : <Tag />}
+      <OptionText>{name}</OptionText>
+    </OptionWrapper>
+  );
+};
+
+export const OptionDropdown = (props) => {
+  const { home, name, pages } = props;
+  const [open, setOpen] = useState(false);
+
+  const renderDropdown = () => {
+    return pages.map((el, ind) => {
+      return <li key={"dd" + ind}>{el}</li>;
+    });
+  };
+
+  return (
+    <OptionWrapper>
+      {open ? <VscTriangleDown /> : <VscTriangleRight />}
+      <OptionText onClick={() => setOpen(!open)}>{name}</OptionText>
+      {open && <ul>{renderDropdown()}</ul>}
+    </OptionWrapper>
+  );
 };

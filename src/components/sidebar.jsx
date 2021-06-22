@@ -7,7 +7,7 @@ import logoE from "../assets/elmLogoE.png";
 import logoElm from "../assets/elmLogo.png";
 
 const optionsArray = [
-  { name: "Overview", pages: ["Overview", "Rate of Sale", "Discounts"] },
+  { name: "Overview", pages: ["Sales Summary", "Rate of Sale", "Discounts"] },
   { name: "Amazon", pages: ["Overview", "Promotions"] },
   { name: "Co-Op", pages: ["Overview", "Promotions"] },
   { name: "Holland & Barrett", pages: [] },
@@ -31,7 +31,8 @@ const Menu = styled.nav`
     padding: 0;
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-end;
+    align-items: ${(props) => (props.open ? "flex-start" : "center")};
+    width: 100%;
   }
 `;
 
@@ -58,11 +59,20 @@ const Sidebar = () => {
             key={el.name + ind}
             name={el.name.substring(0, 2)}
             pages={el.pages.length > 1}
-          ></ClosedOption>
+          />
         );
       });
-    } else {
-      return <Option />;
+    } else if (open) {
+      return arrayOfRetailers.map((el, ind) => {
+        return (
+          <Option
+            key={el.name + ind}
+            name={el.name}
+            pages={el.pages.length > 1 ? el.pages : false}
+            home={el.name.toLowerCase() === "overview"}
+          />
+        );
+      });
     }
   };
 
