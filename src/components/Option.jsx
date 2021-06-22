@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { AiFillHome } from "react-icons/ai";
 import { FaTag } from "react-icons/fa";
@@ -63,14 +63,43 @@ const OptionWrapper = styled(Wrapper)`
   margin: 0.5rem 0.2rem;
   display: grid;
   grid-template-columns: 2rem 2.5rem auto;
-  grid-template-areas: "arrow icon text";
+  grid-template-rows: auto;
+  grid-template-areas:
+    "arrow icon text"
+    ". . dropdown";
   align-items: center;
 `;
 
 const OptionText = styled.a`
-  margin-left: 0.5rem;
   justify-self: start;
   grid-area: text;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+`;
+
+const fadeInOpacity = keyframes`
+  0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+`;
+
+const DropDown = styled.ul`
+  display: flex;
+  flex-flow: column nowrap;
+  grid-area: dropdown;
+
+  opacity: 1;
+  animation-name: ${fadeInOpacity};
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+
+  li {
+    margin: 0.2rem 0;
+  }
 `;
 
 export const ClosedOption = (props) => {
@@ -124,7 +153,7 @@ export const OptionDropdown = (props) => {
       {open ? <VscTriangleDown /> : <ArrRight />}
       {home ? <HomeOption /> : <Tag />}
       <OptionText onClick={() => setOpen(!open)}>{name}</OptionText>
-      {open && <ul>{renderDropdown()}</ul>}
+      {open && <DropDown>{renderDropdown()}</DropDown>}
     </OptionWrapper>
   );
 };
