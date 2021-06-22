@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import * as S from "./sidebar.styles";
-import { ClosedOption, Option } from "./Option";
+import { ClosedOption, Option } from "./Options";
 
 import logoE from "../assets/elmLogoE.png";
 import logoElm from "../assets/elmLogo.png";

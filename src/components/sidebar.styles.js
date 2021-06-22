@@ -14,7 +14,7 @@ export const Menu = styled.nav`
   transition: width, left, right, 0.5s;
   ul {
     list-style: none;
-    padding: 0;
+    padding: 0.2rem 0;
     display: flex;
     flex-flow: column nowrap;
     align-items: ${(props) => (props.open ? "flex-start" : "center")};
