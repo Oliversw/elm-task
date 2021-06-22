@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 import { AiFillHome } from "react-icons/ai";
@@ -22,7 +22,7 @@ const SmallOption = styled.li`
 `;
 
 const HomeOption = styled(AiFillHome)`
-  color: var(--gray);
+  color: var(--teal);
   font-size: 1.5rem;
   grid-area: icon;
   justify-self &:hover {
@@ -149,10 +149,10 @@ export const OptionDropdown = (props) => {
   };
 
   return (
-    <OptionWrapper>
+    <OptionWrapper onClick={() => setOpen(!open)}>
       {open ? <VscTriangleDown /> : <ArrRight />}
       {home ? <HomeOption /> : <Tag />}
-      <OptionText onClick={() => setOpen(!open)}>{name}</OptionText>
+      <OptionText>{name}</OptionText>
       {open && <DropDown>{renderDropdown()}</DropDown>}
     </OptionWrapper>
   );

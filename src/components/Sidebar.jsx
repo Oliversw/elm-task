@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 
+import * as S from "./sidebar.styles";
 import { ClosedOption, Option } from "./Option";
 
 import logoE from "../assets/elmLogoE.png";
 import logoElm from "../assets/elmLogo.png";
 
+// Fake data used to populate the sidebar
 const optionsArray = [
   { name: "Overview", pages: ["Sales Summary", "Rate of Sale", "Discounts"] },
   { name: "Amazon", pages: ["Overview", "Promotions"] },
@@ -14,40 +15,10 @@ const optionsArray = [
   { name: "Morrisons", pages: [] },
 ];
 
-const Menu = styled.nav`
-  min-height: 100vh;
-  height: 100%;
-  min-width: 5rem;
-  width: ${(props) => (props.open ? "15rem" : "6rem")};
-  background-color: var(--gray-dark);
-  color: white;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transition: width, left, right, 0.5s;
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: ${(props) => (props.open ? "flex-start" : "center")};
-    width: 100%;
-  }
-`;
-
-const Logo = styled.img`
-  margin: 3rem 1rem;
-  width: ${(props) => (props.open ? "4rem" : "1.8rem")};
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
 
+  // logic to render options depending on whether the sidebar is open or not
   const renderOptions = (arrayOfRetailers, open) => {
     if (!open) {
       return arrayOfRetailers.map((el, ind) => {
@@ -77,19 +48,19 @@ const Sidebar = () => {
   };
 
   return (
-    <Menu
+    <S.Menu
       open={open}
       onClick={() => {
         if (!open) setOpen(!open);
       }}
     >
-      <Logo
+      <S.Logo
         src={open ? logoElm : logoE}
         onClick={() => setOpen(!open)}
         open={open}
       />
       <ul>{renderOptions(optionsArray, open)}</ul>
-    </Menu>
+    </S.Menu>
   );
 };
 
